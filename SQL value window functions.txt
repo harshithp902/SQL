@@ -1,0 +1,67 @@
+SQL value window functions
+
+window analytical functions most imp for data analytics
+
+Why do we call value functions- to access the value from other row we use  this function so it is value function
+
+1.Lag
+2.Lead
+3.First value
+4.Last value
+
+value (analytics functions) lead, lag, first_value, last_value
+
+expression -all data type,
+partition - optional,
+order - required,
+frame- not allowed for lag, lead ;
+optional for first value
+should be sed for last_value
+
+LEAD() access a value for the next row within a window.
+
+lead(sales,2,10)- expression is required (any datatype-required, offset-optional, offset -optional)
+
+2 indicates the no (2 rows) of rows forward or backward from current row, default =1
+
+10 indicates default value if next /previous row is not available)
+default =null
+LAG() access a value for the previous row within a window.
+
+USECASE : month over month analysis comparison analysis
+
+Analyze the month over month (MM) performance by finding the percentage change in sales between the current and previous month.
+
+Time series analysis
+The process of analyzing the data to understand patterns , trends and behaviours over time.
+
+year over year analysis
+Analyze the overall growth pr decline of the business's performance over time
+month over month analysis
+analyze short term trends and discover patterns in seasonality
+
+
+Analyze the month over month performance by finding the percentage change in sales between the current and previous months.
+
+Time gap analysis :customer retention analysis
+
+measure customer's behaviour and loyalty to help businesses build strong relationships with by frequency of orders by customers
+
+Analyze customer loyalty by ranking customers based on the average number of days between orders
+
+First_value
+
+first_value (sales)over(order by month )
+
+default: range between unbounding preceding and current row)
+Last_Value
+
+
+last_value (sales)over(order by month range between current row and unbounding following )
+
+USECASE:
+
+compare to extremes
+
+
+
