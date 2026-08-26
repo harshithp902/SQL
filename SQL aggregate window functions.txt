@@ -1,0 +1,102 @@
+SQL aggregate window functions
+
+why they are called aggregate functions?
+
+aggregate will combine the data or summarize the data and produce the one aggregated value
+SQL going to go through all rows in the window or entire dataset and in the output SQL going to give  or summarize you one single aggregated value.
+
+AVG(Sales) OVER (PARTITION BY productid optional, order by sales_id optional, frame optional)
+
+
+COUNT(*), COUNT(column name) returns the total rows for each window
+plus keeping the order details
+
+COUNT , counts all the rows in a table regardless of whether any value is NULL
+
+product sales count
+caps	20	3
+caps	10	3
+caps	5	3
+
+gloves	30	2(3)
+gloves	70	2(3)
+gloves	NULL	2(3) (2 if count(sales), 3 if count(*) or count(1))
+
+count(column name) ignore null values
+
+count() all data types
+
+USECASE: 
+1.Overall analysis: we can use count(*) for quick summary or snapshot of entire dataset
+
+2.Find total no of orders +additionally provide details
+we use COUNT(*) OVER() along with other columns details
+
+3. find the total no of order for each customer
+Group wise analysis: total per group: to observe the patterns within different category
+
+4. Data quality check 
+Detecting number of nulls by comparing total no of rows 
+
+5.Data quality issue 
+duplicates leads to inaccuracies in analysis
+count() can be used to identify the duplicates.
+
+first we have to check primary and check the data model to find out primary key of particular table we use
+
+count(*) over(partition by orderid) =1
+
+
+-----------------------------------------------------------------
+SUM(sales) OVER(PARTITION BY product) 
+
+product sales sum
+caps	20	35
+caps	10	35
+caps	5	35
+
+gloves	30	100
+gloves	70	100
+gloves	NULL	100 
+
+USECASES:
+
+find total sales/average sales/summarize/maximum/minimum in all orders
+find total sales/average sales/summarize/maximum/minimum  per each product 
+provide additional data details
+
+overall analysis
+catergorized analysis
+comparision analysis- part to whole analysis showscontribution of each datapoint to data set.
+compare to extreme analysis
+compare current sales to highest or lowest sales
+
+find percentage contribution of each product sales to the total sales
+
+AVG(COALESCE(Sales)) OVER(PARTITION BY productid) coalesce converts null values to specific value like 0 easy for calculations or else inaccurate values.
+
+COMPARE To AVERAGE usecase: Find all orders where sales are higher than the average sales across all orders
+
+WINDOW FUNCTIONS cant be used in the WHERE clause
+
+MIN/MAX window functions
+
+USE CASE show the employess with highest salaries
+COMPARE TO EXTREMES 
+DISTANCE to EXTEMES
+
+*** RUNNING TOTAL and ROLLING total***
+
+tracking - track current sales with target sales 
+trend analysis providing insights into historical patterns.
+
+
+They aggregate sequence of members and the aggregation is updated each time a new member is added.
+
+Running Total aggregate allvalues frombeginning upto the current point withut dropping off older data
+
+Rolling total - aggregate all vales withina fixed time window a n ew data is added the oldest data point will be dropped.
+Rolling /shifting window using summarize window function with frame order by and frame clause
+
+Moving average of each product over time
+ 

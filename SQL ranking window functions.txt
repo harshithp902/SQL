@@ -1,0 +1,157 @@
+SQL ranking window functions
+
+Where do we need them practically?
+Why do we call them ranking functions
+
+TASK-> Rank the products based on their sales?
+or Find Top 20% or Top 5 products
+
+NOTE-SQL sorts data as first step in descending order
+
+Integer based ranking- assigning integer to each row-1,2,3,.. 
+
+discrete values
+Eg: Top 5 products
+Top/Bottom N analysis
+to position of the value within the list.
+
+window functions used here:
+RANK_NUMBER()
+RANK()
+DENSE_RANK()
+NTILE()
+---------------------------
+Percentage based ranking- assigning percentage from 0 to 1 like 0, 0.25, 0.5, 1..
+
+continuous values
+Eg: Find Top 20%
+used for distribution analysis
+to understand the contribution of each product to the total
+
+window functions used here:
+CUME_DIST()
+PERCENT_RANK()
+-----------------------------
+RANK FUNCTIONS SYNTAX
+RANK() OVER(PARTITION BY productID ORDER BY sales)
+rank func should not have any arguements or parameters 
+over func cannot be empty
+partition by is optional 
+order by is required
+frame is not allowed
+
+NOTE: NTILE(n) can have arguement as number
+-------------------------------------
+ROW_NUMBER() -Assign a unique number to each row in a window and does not tie if two numbers are same , it will not assign same rank
+unique ranking without gaps 
+eg: sequence of rank
+100-1
+80-2
+80-3
+50-4
+ROW_NUMBER() OVER (ORDER BY sales)
+
+QUESTION: can i apply row_number function to the string values in sql?
+--------------------------------------
+RANK() -Assign the number to each row  in a window
+it handles the ties and leave the gaps
+shared ranking with gaps
+RANK() OVER(ORDER BY sales DESC) AS rank_sales
+
+100-1
+80-2
+80-2
+50-4 ✔️ 3 ❌ GAP IN RANKING
+-----------------------------------------
+DENSE_RANK()- Assign rank to each row
+it handles ties
+it does not leave any gaps in ranking
+next rank sequence
+shared ranking without gaps
+100 -1
+80-2
+80-2
+50 -3
+
+COMPARISON
+rank-unique , shared, shared
+tie- does not handle, handle, handle
+gaps- no gaps, gap, no gaps
+
+------------------------------------------
+ROW_NUMBER USECASES:
+
+Top N analysis -Find the top highest sales for each product
+ROW_NUMBER() OVER (PARTITION BY product id ORDER BY sales DESC) AS rank_sales
+
+Bottom N analysis -Find the  lowest 2 customers based on their total sales
+Help analysis the under performance t manage risks and to do optimizations
+
+GENERATE UNIQUE IDS
+-Assign unique IDs to the rows of the orders archive table
+
+PAGINATING
+the process of breaking down a large data into smaller , more manageable chunks.
+
+IDENTIFY DUPLICATES- data quality issues 
+----------------------------------------------
+
+NTILE(n)- Divides the rows into specified number of approximately equal groups
+
+Bucket size = Number of rows / no of bucket size n
+
+100-1
+80-1
+80-2
+50-2
+if row count is evenly divided
+what if row count is odd divided - then as per sql rule , it prefers the larger group first 
+
+NTILE USECASE:
+Data analyst -DATA SEGEMENTATION
+Data Engineer- ETL processing and Load balancing (Equalising load processing)
+
+Segment all orders into 3 categories: high, medium and low sales.
+
+NTILE(3) over(ORDER BY sales DESC) Buckets
+
+equalising the load
+transferring the large table data from db a to db b
+
+
+PERCENTAGE BASED RANKING
+
+CUME _DIST
+
+percentage number/ no of rows
+
+cumulative distribution calculates the distribution of data points within a window
+if 2 or 3 rows contain same value then it takes 3rd row 3/5
+
+100-0.2
+80-0.6
+80-0.6
+50-0.8
+40-1
+
+PERCENT_RANK
+position of rownumber -1/no of rows-1
+percent_rank=0/4
+
+TIE rule
+the position of the first occurrence of the same value
+
+100-0
+80-0.25
+80-0.25
+60-0.75
+50-1
+
+Difference
+inclusive the current row is included, exclusive the current row is excluded
+
+USECASE:
+Find the products that fall within the highest 40 % of prices.
+
+
+

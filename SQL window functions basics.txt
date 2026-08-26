@@ -1,0 +1,129 @@
+SQL window functions basics also Analytical functions
+
+applications and projects: Data analysis,
+
+WHAT and WHY?
+window vs group byde
+
+window functions allow us to perform calculations on specific subset of data, without losing the level of details of rows.
+ROW LEVEL CALCULATIONS
+
+group by returns a single row for each group 
+window returns a result for a each row
+
+group by -simple aggregations
+window -simple aggregations + keep details
+
+group by aggregate functions- count, sum, avg, min, max.
+window functions- aggregation+ranking+value
+
+group by simple data analysis
+window functions-adv data analysis
+
+window
+product sales total sales
+caps	10	40(keeps original rows info upon calculation aggregate) 
+caps	30	40
+gloves	5	25
+gloves	20	25
+
+group by
+
+product sales product total sales
+caps	10	caps	40 (rows reduction when aggregating)
+caps	30	gloves	25	
+gloves	5
+gloves	20	
+
+Result granularity -the no of rows in the o/p is defined by the dimension the product id in group by
+
+USECASE: 
+1.find the total sales across all orders
+2.find the total sales per each product
+3.find the total sales for each product additionally provide details such order id and order date
+
+All the columns in SELECT must be included in GROUP BY
+
+GROUP BY cant do aggregations and provide details at same time.
+
+In order to implement the 3rd use case we use the window functions.
+
+
+SELECT
+SUM(sales) OVER()
+FROM Sales.orders
+
+Window functions returns a result for each row
+
+Syntax of window functions deep dive
+
+window function over(partition , order, frame)
+
+window function--> aggregate
+
+count()- all datatype
+sum()-numeric
+avg()-numeric
+min()-numeric
+max()-numeric
+
+
+Rank functions
+
+row_number()-empty
+rank()-empty
+dense_rank()-empty
+cume_dist()-empty
+percent_rank()-empty
+ntile-number
+
+Value functions
+
+lead- all data types
+lag - all data types
+first_value - data types
+last_value- data types	
+
+
+------>> Partition By
+divides the result set into partitions(windows)
+
+sum(sales) over()
+calculation is done on entire dataset
+
+sum(sales) over(partition by product)
+calculation on each window (each product)
+
+sum(sales) over(partition by product,orderStatus)
+
+partition by is optional for all window funcs
+
+Allows aggregation of data at different granularities within the same query
+
+------>> Order By 
+sort  the data within the window.
+
+------->> Window frame or frame close
+defines a subset of rows within each window that is relevant for the calculation
+
+AVG(sales) OVER(PARTITION BY category ORDER BY OrderDate ROWS BETWEEN CURRENT ROW AND UNBOUNDED following )
+
+Frame types- ROWS, RANGE
+Lower frame boundary- current row, N preceding, unbounded preceding
+Higher frame boundary current row, N following . Unbounded following
+
+Rules: Frame clause can only be used together with order by clause
+lower value must be before the higher value
+
+4Xrules not allowed to use
+
+window functions cant be used to filter data.
+nested window function is not allowed.
+can combine grou
+
+
+
+
+
+
+
