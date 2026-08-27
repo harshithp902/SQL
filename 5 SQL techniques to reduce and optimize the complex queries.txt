@@ -1,0 +1,101 @@
+5 SQL techniques to reduce and optimize the complexity of sql queries.
+
+1.Subquery
+2.CTE
+3.Views
+4.Temporary Table
+5.CTAs
+
+Why we need those techniques?
+
+DBA responsible for DB structure
+
+Overview of DB architecture
+
+DB is accessed by data analysts to analyze or create reports from complex analytical queries, data engineers to build data warehouses in which they write extract query to extract, transform query to make transformation (manipulation) and load query to collect result and load it in other database called data ware house.
+
+{DATA WAREHOUSE:
+
+A special database that collects and integrates data from different sources to enable analytics and support decision making.
+
+Data analysts us/aie data warehouses to analyze the data or to prepare the data to generate visualization and reports or in excel sheet.
+
+A data warehouse stores structured, cleaned data ready for business reporting, while a data lake stores raw, unprocessed data in any format for deep exploration
+
+These two storage systems serve very different technical needs.
+
+POWER BI: data analytical visualization tool.}-> The entire system we call it Data warehouse system or Business intelligence system
+
+
+Data Scientist: access to DB to write queries to do ETL in order to develop a model and doing ML/AI.
+
+CHALLENEGES:
+Redundancy- repeated queries / code
+Performance issues - much time for result when run one query
+complexity
+hard to maintain
+DB stress by analysts how DB model is designed
+security 
+
+Solutions: Subquery , CTE(common table expression), View, Temp tables. CTA (create table as select)
+
+behind the database we have data model that is prepared and optimized only for one application.
+
+It takes expertise to understand the physical data model 
+
+
+Simplified DB architecture
+Once you understand architecture , you would be able to understand how data base  execute queries rom these techniques.
+
+Client is requesting data through query.
+
+Server is the place where database lives.
+
+It has database engine - brain of the database , executing multiple operations such as storing , retrieving and managing data within the database.
+
+Storage is an imprtant component.It has two types of storage in db 
+DISK storage -- long term memory ,where data is stored 
+permanently
+
++ Capacity holds large data
+-speed slow to read and write
+
+CACHE storage
+
+Fast short term memory, where data is stored temporarily.
++speed : extremely fast to read and to write for fast retrieval
+-capacity: can hold smaller amount of data.
+
+trade off between the speed  and how much data and how long
+--------------------------------------------
+In disk storage , three types of storage area
+
+user,  catalog, temp data storage serves different purpose
+
+User data storage
+
+main content of the database
+this is where the actual data thatusers careabout is stored.
+All relevant and important data is stored.
+
+Eg : Tables
+
+System catalog
+
+It hold metadata info about the database.
+
+metadata is data about data
+
+Temporary storage
+
+used by the db for short term task like processing queries or sorting the data.
+
+ once task is done , storage is cleared by db.
+
+HOW SIMPLE QUERY WORKS represented in picture
+
+
+
+
+
+
