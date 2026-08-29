@@ -99,12 +99,14 @@ correlated vs non correlated
 Non correlated 
 A subquery that can run independently from the Main query-standalone query
 
-data base checks main query , main query is executed row by row , first row from the main query passes to the subquery and sub query reaches db and if subquery yields the result , it displays on final result , if doesn't it will skip that row and move to next row.
-
 
 Correlated sub query 
 
 A subquery that relays on values from the main query
+
+data base checks main query , main query is executed row by row , first row from the main query passes to the subquery and sub query reaches db and if subquery yields the result , it displays on final result , if doesn't it will skip that row and move to next row.
+
+
 
 
 
