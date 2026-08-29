@@ -1,0 +1,120 @@
+SQL Subqueries
+
+Types of subqueries and its operators
+
+how sql execute subqueries ? how it helps for optimization?
+
+What is subquery?
+
+query(sub) inside another query(main)
+ 
+sub query interacts with db and produce an intermediate result .
+This intermediate result is not displayed to the users as result 
+
+It acts like a supporter to the main query only main query can access it locally no other independent separate query can. Main query operates on the intermediate result , produce the final result that is visible to the us. 
+Main query interacts with database.
+
+When to use subquery??
+
+take a complex task like
+
+join tables->filtering-> transformation->aggregations
+
+it ends up like hard complex sql query ,4 queries to execute above process
+by using (subquery , subquery->subquery->subquery->main query) one query(nested queries)it is easy  to read and can mainatain logical flow inside query.
+
+Sub Query Categories:
+
+Dependency
+---
+Non correlated subquery
+Correlated query
+
+Result types
+----
+1.scalar query
+  when result shows only one value. Eg : SELECT AVG(sales) FROM Orders. 
+2.Row query
+ when result shows one column and multiple records.
+ Eg: SELECT customers FROM orders
+3.table query
+  when result shows multiple column and multiple records.
+ Eg: SELECT * FROM orders
+
+location and clauses
+---
+Select 
+From
+Join
+Where - comparison operators(>=,<=,<,>) and logical operators(IN, ANY, ALL, EXISTS)
+
+--> how to use subquery in the FROM clause?
+
+used as temporary table for the main query
+
+SELECT col1, col2, col3..
+FROM (SELECT col..FROM WHERE condition)AS alias
+
+usecase: Find the products that have price higher than the average price of all products
+
+How data base execute subqueries?
+Data base engine reads the sub query and execute and produce the intermediate result by connecting disk storage and later on it stores the sub result in cache for faster retrieval. Now main query checks the sub result from cache and execute main query and produce the final result.
+
+
+--> Subquery in SELECT clause:
+used to aggregate data side by side with the main query's data ,allowing for direct comparison.
+
+SELECT
+ column1,
+ (SELECT column FROM table 1 WHERE condition)
+FROM table1
+
+rule : only scalar value is allowed to be used , subquery must produce scalar value.
+
+--> Subquery in JOIN clause:
+Used to prepare the data (filtering or aggregation) before joining it with other tables
+
+--> Subquery in WHERE clause:
+Used for complex filtering logic and makes query more flexible and dynamic
+
+SELECT column1, column2 ..
+FROM table 1
+with comparison operators
+WHERE column =(SELECT column FROM table2 WHERE condition)
+
+rule: only scalar value is allowed to be used , subquery must produce scalar value.
+
+with IN operators
+
+checks whether a value matches any value from a list.
+
+with ANY /ALL operators when comparing 
+
+WHERE < ANY(subquery)
+WHERE < ALL(subquery)
+
+Types of subqueries on Dependency based 
+correlated vs non correlated
+
+Non correlated 
+A subquery that can run independently from the Main query-standalone query
+
+data base checks main query , main query is executed row by row , first row from the main query passes to the subquery and sub query reaches db and if subquery yields the result , it displays on final result , if doesn't it will skip that row and move to next row.
+
+
+Correlated sub query 
+
+A subquery that relays on values from the main query
+
+
+
+
+
+
+
+
+
+
+
+
+
