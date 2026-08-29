@@ -99,6 +99,8 @@ correlated vs non correlated
 Non correlated 
 A subquery that can run independently from the Main query-standalone query
 
+subquery runs first and gets intermediate result once done main query comes into picture and produces the final result.
+
 
 Correlated sub query 
 
