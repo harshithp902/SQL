@@ -43,3 +43,114 @@ Accessing the sources. building the ETLs
 ,build Database for datawarehouse
 
 For reports , data warehouse is used by data analyst.
+
+Instead of collecting data manually, We prefer important component called ETL process
+Extract the data from mutliple Sources
+Apply the transformations on extracted data sources
+Load this transformed data to the Data warehouse 
+
+Data warehouse is a single point of truth for Analzes and reporting.
+
+All these reports consume this Data warehouse
+we can generate integrated reports , multiple reports from multiple sources
+
+The whole process is completely automated.
+
+Datawarehouse is completely integrated and maintain historical data.
+Modern data warehouse in cloud platforms, we can easily handle big data
+
+Accessing the sources. building the ETLs
+,build Database for datawarehouse
+
+For reports , data warehouse is used by data analyst.
+
+ETL Process
+
+Extract: Pull out required data from sources, no manipulations on data done at this stage, only extraction
+Transformation : We can apply manipulations like changing shape of the data, data cleansing, integration , normalizations. reshape to formatting etc.. heavy working task
+Load : The prepared data is loaded to Data warehouse (target)
+
+warehouse vs data warehouse vs data lake
+
+Data Architecture
+
+Source
+|
+EL
+|
+layer 1
+|
+ETL
+|
+layer2
+|
+TL
+| 
+layer 3
+|
+L
+|
+layer 4
+|T
+
+Overview of different techinques ad methods in ETL
+
+EXTRACTION
+
+extraction methods
+
+1.pull extraction
+2.push extraction
+
+extraction types
+
+1.full extraction
+2.incremental extraction
+
+extraction techinques
+
+1.Manual data extraction -- access to source system , extract it manually
+2.Database querying- query the data by connecting to db
+3.File parsing- file to pass it to the data warehouse
+4.API calls - connect to API to get data
+5.Event based Streaming- connected to kafka for  streaming data
+6.CDC - similar to Streaming
+7.Web Scraping- extract info from web through scrpting
+
+TRANSFORMATION
+
+1.Data Enrichment
+2.Data Integration
+3.Derived Columns
+4.Data Noramlizaton & Standardization
+5.Business Rules and Logic
+6.Data Aggregations
+7.Data Cleansing
+	Remove Duplicates
+	Data Filtering
+	Handling missing data
+	Handling invalid values
+	outlier Detection
+	Data type Casting
+	Handling unwanted spaces
+	
+Load
+
+1.Processing types
+	Batch Processing
+	Stream Processing
+2.Load methods
+	Full Load
+		Truncate & insert
+		Upsert
+		Drop,create, insert
+	Incremental Load
+		upsert
+		append
+		merge
+3.Slowly Changing Dimensions
+	SCD 0 No historization
+	SCD 1 overwrite((more famous)  
+	SCD2 Historization 
+	SCD_
+
