@@ -1,0 +1,4 @@
+Data warehouse projects!!!
+Data architect
+Design a modern data architecture
+Data engineer is to write ETL code,Data Modeller who creates  the Data models for analysis
