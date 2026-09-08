@@ -1,4 +1,25 @@
 Data warehouse projects!!!
 Data architect
 Design a modern data architecture
-Data engineer is to write ETL code,Data Modeller who creates  the Data models for analysis
+Data engineer is to write ETL code
+Data Modeller who creates the Data models for analysis
+
+What is Data Warehouse?
+
+A subject oriented , integrated ,time variant and non volatile collection of data in support of management's decision making process.
+ 
+subject oriented means focused on a business area like sales, customers, finance,so on.
+
+Integrate multiple source systems
+
+Time variant- we can keep historical data in datawarehouse
+
+non- volatile - once we enter data in data ware house ,it wont delete and modified.
+
+Issues :
+Repeating the collection of data the n converts into insightful reports take weeks or months of time .
+They become old gradually based on time they created
+Handling Big data
+Data leak 
+
+Company needs proper data management
