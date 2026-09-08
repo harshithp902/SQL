@@ -23,3 +23,23 @@ Handling Big data
 Data leak 
 
 Company needs proper data management
+
+Instead of collecting data manually, We prefer important component called ETL process
+Extract the data from mutliple Sources
+Apply the transformations on extracted data sources
+Load this transformed data to the Data warehouse 
+
+Data warehouse is a single point of truth for Analzes and reporting.
+
+All these reports consume this Data warehouse
+we can generate integrated reports , multiple reports from multiple sources
+
+The whole process is completely automated.
+
+Datawarehouse is completely integrated and maintain historical data.
+Modern data warehouse in cloud platforms, we can easily handle big data
+
+Accessing the sources. building the ETLs
+,build Database for datawarehouse
+
+For reports , data warehouse is used by data analyst.
